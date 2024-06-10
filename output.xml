@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.3 on win32)" generated="2024-06-07T07:29:21.437505" rpa="false" schemaversion="5">
+<suite id="s1" name="Login" source="c:\QAx\projects\mark85-robot-express\tests\login.robot">
+<test id="s1-t1" name="Não deve logar com senha inválida" line="28">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-06-07T07:29:24.407719" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\QAx\\projects\\mark85-robot-express\\browser\\traces\\64a5e93e-830f-40fc-8630-2608b09b609a"}</msg>
+<msg time="2024-06-07T07:29:25.472780" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\QAx\\projects\\mark85-robot-express\\browser\\traces\\64a5e93e-830f-40fc-8630-2608b09b609a"}</msg>
+<arg>browser=chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-06-07T07:29:24.392090" elapsed="1.080690"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-06-07T07:29:29.807561" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-06-07T07:29:29.808554" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-06-07T07:29:25.472780" elapsed="4.335774"/>
+</kw>
+<status status="PASS" start="2024-06-07T07:29:24.392090" elapsed="5.417456"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-06-07T07:29:29.889484" level="INFO">${user} = {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${user}</var>
+<arg>name=Gregory W Silva</arg>
+<arg>email=gregorywillian@yahoo.com.br</arg>
+<arg>password=Gwsilva2014</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-06-07T07:29:29.889484" elapsed="0.000000"/>
+</kw>
+<kw name="Remove user from database" owner="database">
+<msg time="2024-06-07T07:29:30.045662" level="INFO">removing user bygregorywillian@yahoo.com.br</msg>
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-06-07T07:29:29.889484" elapsed="0.156178"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-06-07T07:29:30.123707" level="INFO">{'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-06-07T07:29:30.067045" elapsed="0.057657"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${user}</arg>
+<arg>password=1234554</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2024-06-07T07:29:30.146432" elapsed="0.000000"/>
+</kw>
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-06-07T07:29:30.154384" level="INFO">Fills the text 'gregorywillian@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-06-07T07:29:30.153391" elapsed="0.189545"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-06-07T07:29:30.345916" level="INFO">Fills the text '1234554' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-06-07T07:29:30.343929" elapsed="0.371403"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-06-07T07:29:30.718317" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-06-07T07:29:30.716331" elapsed="0.617453"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-06-07T07:29:30.152398" elapsed="1.182379"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-06-07T07:29:31.468729" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-06-07T07:29:31.468729" elapsed="0.046001"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-06-07T07:29:31.720923" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-06-07T07:29:31.514730" elapsed="0.208180"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-06-07T07:29:31.823128" level="INFO">Text: 'Ocorreu um erro ao fazer login, verifique suas credenciais.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-06-07T07:29:31.723903" elapsed="0.099225"/>
+</kw>
+<arg>Ocorreu um erro ao fazer login, verifique suas credenciais.</arg>
+<status status="PASS" start="2024-06-07T07:29:31.467735" elapsed="0.355393"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-06-07T07:29:32.366377" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-06-07T07:29:31.846626" elapsed="0.519751"/>
+</kw>
+<status status="PASS" start="2024-06-07T07:29:24.392090" elapsed="7.989117"/>
+</test>
+<doc>Cenários de autenticação do usuário</doc>
+<status status="PASS" start="2024-06-07T07:29:21.453133" elapsed="11.761284"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
