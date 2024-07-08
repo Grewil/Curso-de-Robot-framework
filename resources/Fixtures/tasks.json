@@ -1,0 +1,63 @@
+{
+  "create":{
+    "user": {
+         "name": "Gregory W Silva",
+         "email": "gregorywillian@yahoo.com.br",
+         "password": "Gwsilva2014"
+    },
+    "task":{
+        "name": "Criar uma nova versão so ipod",
+        "tags": ["ios", "music", "ipod"]
+    }
+  },
+
+ "duplicate":{
+    "user": {
+       "name": "Greg",
+       "email": "greg@yahoo.com.br",
+       "password": "Gwsilva2014@"
+    },
+    "task":{
+      "name": "Estudar em casa",
+      "tags": []
+    }
+  },
+
+  "tags_limit":{
+    "user": {
+         "name": "Gregory Silva",
+         "email": "gregory@yahoo.com.br",
+         "password": "Gwsilva2014"
+    },
+    "task":{
+        "name": "Estudar python",
+        "tags": ["QAX", "python", "Programação", "pip"]
+    }
+  },
+  
+  "done":{
+    "user": {
+         "name": "Willian",
+         "email": "Willian@yahoo.com.br",
+         "password": "Gwsilva2014"
+    },
+    "task":{
+        "name": "Criar uma nova IA",
+        "tags": ["Javis", "ulton", "Ark"]
+    }
+  },
+
+  "delete":{
+    "user": {
+         "name": "Silva",
+         "email": "Silva@yahoo.com.br",
+         "password": "Gwsilva2014"
+    },
+    "task":{
+        "name": "Criar uma",
+        "tags": ["Javis", "ulton", "Ark"]
+    }
+  }
+
+} 
+

@@ -6,6 +6,16 @@ client = MongoClient('mongodb+srv://gregorywillian:Gwsilva2014!@gregory.e2pjqrq.
 
 db = client['Gregory']
 
+@keyword('Clean user from database')
+def clean_user(user_email):
+    users = db['users']
+    tasks = db['tasks']
+
+    u = users.find_one({'email':user_email})
+    if (u):
+       tasks.delete_many({'user': u['_id']})
+       users.delete_many({'email': user_email})
+
 @keyword('Remove user from database')
 
 def remove_user(email):

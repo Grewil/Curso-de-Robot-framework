@@ -1,32 +1,907 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on win32)" generated="2024-06-06T05:26:27.253195" rpa="false" schemaversion="5">
-<suite id="s1" name="Tests" source="C:\Qax\projects\mark85-robot-express\tests">
-<suite id="s1-s1" name="Signup" source="C:\Qax\projects\mark85-robot-express\tests\signup.robot">
-<test id="s1-s1-t1" name="Não deve cadastrar com senha muito curta" line="74">
+<robot generator="Robot 7.0 (Python 3.12.3 on win32)" generated="2024-07-08T07:13:14.104831" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\QAx\projects\mark85-robot-express\tests">
+<suite id="s1-s1" name="Login" source="C:\QAx\projects\mark85-robot-express\tests\login.robot">
+<test id="s1-s1-t1" name="Deve poder logar com um usuário pré cadastrado" line="16">
 <kw name="Start Session" owner="base" type="SETUP">
 <kw name="New Browser" owner="Browser">
-<msg time="2024-06-06T05:26:31.308680" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\Qax\\projects\\mark85-robot-express\\logs\\browser\\traces\\f55f9164-9319-484c-b16f-a2fde39773ec"}</msg>
-<msg time="2024-06-06T05:26:32.789778" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\Qax\\projects\\mark85-robot-express\\logs\\browser\\traces\\f55f9164-9319-484c-b16f-a2fde39773ec"}</msg>
-<arg>browser=chromium</arg>
+<msg time="2024-07-08T07:13:24.329495" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\QAx\\projects\\mark85-robot-express\\logs\\browser\\traces\\dcb5b098-a797-4e92-b36f-ce38bd076a63"}</msg>
+<msg time="2024-07-08T07:13:26.541584" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\QAx\\projects\\mark85-robot-express\\logs\\browser\\traces\\dcb5b098-a797-4e92-b36f-ce38bd076a63"}</msg>
+<arg>browser=${BROWSER}</arg>
 <arg>headless=False</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Create a new playwright Browser with specified options.</doc>
-<status status="PASS" start="2024-06-06T05:26:31.308680" elapsed="1.481098"/>
+<status status="PASS" start="2024-07-08T07:13:24.327984" elapsed="2.214601"/>
 </kw>
 <kw name="New Page" owner="Browser">
-<msg time="2024-06-06T05:26:38.433259" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
-<msg time="2024-06-06T05:26:38.433259" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<msg time="2024-07-08T07:13:30.383144" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:30.383144" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
 <arg>${BASE_URL}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Open a new Page.</doc>
-<status status="PASS" start="2024-06-06T05:26:32.789778" elapsed="5.643481"/>
+<status status="PASS" start="2024-07-08T07:13:26.542585" elapsed="3.840559"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:31.308680" elapsed="7.124579"/>
+<status status="PASS" start="2024-07-08T07:13:24.326984" elapsed="6.057162"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:13:30.386145" level="INFO">${user} = {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${user}</var>
+<arg>name=Gregory W Silva</arg>
+<arg>email=gregorywillian@yahoo.com.br</arg>
+<arg>password=Gwsilva2014</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.385145" elapsed="0.001000"/>
+</kw>
+<kw name="Remove user from database" owner="database">
+<msg time="2024-07-08T07:13:30.582277" level="INFO">removing user bygregorywillian@yahoo.com.br</msg>
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:13:30.387152" elapsed="0.195125"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:13:30.632278" level="INFO">{'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:30.583277" elapsed="0.049001"/>
+</kw>
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:30.643278" level="INFO">Fills the text 'gregorywillian@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.642280" elapsed="0.148091"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:30.793371" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.791372" elapsed="0.056999"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:13:30.849370" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.848371" elapsed="0.110069"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:30.638278" elapsed="0.321163"/>
+</kw>
+<kw name="User should be logger in" owner="Header">
+<kw name="Split String" owner="String">
+<msg time="2024-07-08T07:13:30.961456" level="INFO">@{splited_name} = [ Gregory | W | Silva ]</msg>
+<var>@{splited_name}</var>
+<arg>${name}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.961456" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-08T07:13:30.962456" level="INFO">['Gregory', 'W', 'Silva']</msg>
+<arg>${splited_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.962456" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:13:30.963456" level="INFO">${element} = css=header .right small</msg>
+<var>${element}</var>
+<arg>css=header .right small</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.963456" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:31.293111" level="INFO">Waited for Element with selector css=header .right small at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:30.963456" elapsed="0.329655"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:31.429680" level="INFO">Text: 'Olá, Gregory'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>Olá, ${splited_name}[0]</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:31.294111" elapsed="0.136569"/>
+</kw>
+<arg>${user}[name]</arg>
+<status status="PASS" start="2024-07-08T07:13:30.960446" elapsed="0.470234"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:13:31.793902" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:13:31.431679" elapsed="0.362223"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:24.317985" elapsed="7.476916"/>
+</test>
+<test id="s1-s1-t2" name="Não deve logar com senha inválida" line="28">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:13:32.820022" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:32.831027" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:32.832026" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:13:32.819022" elapsed="0.013004"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:13:36.304668" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:36.304668" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:13:32.832026" elapsed="3.475642"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:32.818022" elapsed="3.489646"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:13:36.437713" level="INFO">${user} = {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${user}</var>
+<arg>name=Gregory W Silva</arg>
+<arg>email=gregorywillian@yahoo.com.br</arg>
+<arg>password=Gwsilva2014</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.436713" elapsed="0.001000"/>
+</kw>
+<kw name="Remove user from database" owner="database">
+<msg time="2024-07-08T07:13:36.495238" level="INFO">removing user bygregorywillian@yahoo.com.br</msg>
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:13:36.480236" elapsed="0.015002"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:13:36.555238" level="INFO">{'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:36.496238" elapsed="0.059000"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${user}</arg>
+<arg>password=1234554</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.556237" elapsed="0.000000"/>
+</kw>
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:36.560235" level="INFO">Fills the text 'gregorywillian@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.559236" elapsed="0.102519"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:36.663756" level="INFO">Fills the text '1234554' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.662756" elapsed="0.063535"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:13:36.727290" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.727290" elapsed="0.122096"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:36.558237" elapsed="0.292149"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:13:36.851384" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.851384" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:36.987492" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.852383" elapsed="0.136109"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:37.048492" level="INFO">Text: 'Ocorreu um erro ao fazer login, verifique suas credenciais.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:36.989493" elapsed="0.058999"/>
+</kw>
+<arg>Ocorreu um erro ao fazer login, verifique suas credenciais.</arg>
+<status status="PASS" start="2024-07-08T07:13:36.850386" elapsed="0.198106"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:13:37.390153" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-2.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-2.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:13:37.049492" elapsed="0.341658"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:32.766441" elapsed="4.629226"/>
+</test>
+<doc>Cenários de autenticação do usuário</doc>
+<status status="PASS" start="2024-07-08T07:13:16.117774" elapsed="22.275166"/>
+</suite>
+<suite id="s1-s2" name="Online" source="C:\QAx\projects\mark85-robot-express\tests\online.robot">
+<test id="s1-s2-t1" name="Webapp deve estar online" line="10">
+<kw name="Start Session" owner="base">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:13:38.763789" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:38.769793" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:38.770793" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:13:38.762789" elapsed="0.008004"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:13:43.195674" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:43.195674" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:13:38.770793" elapsed="4.424881"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:38.761790" elapsed="4.435884"/>
+</kw>
+<kw name="Get Title" owner="Browser">
+<msg time="2024-07-08T07:13:43.231680" level="INFO">Title: 'Mark85 by QAx'</msg>
+<arg>equal</arg>
+<arg>Mark85 by QAx</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the title of the current page.</doc>
+<status status="PASS" start="2024-07-08T07:13:43.212675" elapsed="0.019005"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:38.720790" elapsed="4.514411"/>
+</test>
+<doc>online</doc>
+<status status="PASS" start="2024-07-08T07:13:38.458939" elapsed="5.776640"/>
+</suite>
+<suite id="s1-s3" name="Signup" source="C:\QAx\projects\mark85-robot-express\tests\signup.robot">
+<test id="s1-s3-t1" name="Deve poder cadastrar um novo usuário" line="15">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:13:44.569434" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:44.596525" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:44.597525" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:13:44.567435" elapsed="0.030090"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:13:47.402708" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:47.403709" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:13:44.597525" elapsed="2.806184"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:44.567435" elapsed="2.836274"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:13:47.408708" level="INFO">${user} = {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${user}</var>
+<arg>name=Gregory W Silva</arg>
+<arg>email=gregorywillian@yahoo.com.br</arg>
+<arg>password=Gwsilva2014</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:13:47.407709" elapsed="0.000999"/>
+</kw>
+<kw name="Remove user from database" owner="database">
+<msg time="2024-07-08T07:13:47.424715" level="INFO">removing user bygregorywillian@yahoo.com.br</msg>
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:13:47.409707" elapsed="0.015008"/>
+</kw>
+<kw name="Go to signup page" owner="SignupPage">
+<kw name="Go To" owner="Browser">
+<msg time="2024-07-08T07:13:47.816977" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<arg>${BASE_URL}/signup</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2024-07-08T07:13:47.425716" elapsed="0.391261"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:47.892500" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<arg>css=h1</arg>
+<arg>visible</arg>
+<arg>3</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:47.817977" elapsed="0.075523"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:47.960025" level="INFO">Text: 'Faça seu cadastro'</msg>
+<arg>css=h1</arg>
+<arg>equal</arg>
+<arg>Faça seu cadastro</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:47.893500" elapsed="0.066525"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:47.425716" elapsed="0.535308"/>
+</kw>
+<kw name="Submit signup form" owner="SignupPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:47.963023" level="INFO">Fills the text 'Gregory W Silva' in the given field.</msg>
+<arg>css=input[name=name]</arg>
+<arg>${user}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:47.962024" elapsed="0.098050"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:48.062076" level="INFO">Fills the text 'gregorywillian@yahoo.com.br' in the given field.</msg>
+<arg>css=input[name=email]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.061075" elapsed="0.075533"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:48.150119" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[name=password]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.136608" elapsed="0.052035"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:13:48.190650" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.189650" elapsed="0.106532"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:47.961024" elapsed="0.335158"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:13:48.298182" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.298182" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:48.540780" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.299181" elapsed="0.242599"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:48.581789" level="INFO">Text: 'Boas vindas ao Mark85, o seu gerenciador de tarefas.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.541780" elapsed="0.040009"/>
+</kw>
+<arg>Boas vindas ao Mark85, o seu gerenciador de tarefas.</arg>
+<status status="PASS" start="2024-07-08T07:13:48.297183" elapsed="0.284606"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:13:48.916847" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-3.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-3.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:13:48.582788" elapsed="0.334059"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:44.536428" elapsed="4.381425"/>
+</test>
+<test id="s1-s3-t2" name="Não deve permitir o cadastro com email duplicado" line="28">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:13:49.900468" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:49.911468" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:49.911468" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:13:49.899468" elapsed="0.013000"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:13:51.934881" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:51.934881" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:13:49.912468" elapsed="2.023412"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:49.898468" elapsed="2.037412"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:13:52.047455" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregorywillian@hotmail.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${user}</var>
+<arg>name=Gregory</arg>
+<arg>email=gregorywillian@hotmail.com.br</arg>
+<arg>password=Gwsilva2014</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.046455" elapsed="0.001000"/>
+</kw>
+<kw name="Remove user from database" owner="database">
+<msg time="2024-07-08T07:13:52.066456" level="INFO">removing user bygregorywillian@hotmail.com.br</msg>
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:13:52.048455" elapsed="0.018001"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:13:52.111491" level="INFO">{'name': 'Gregory', 'email': 'gregorywillian@hotmail.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:52.067456" elapsed="0.044035"/>
+</kw>
+<kw name="Go to signup page" owner="SignupPage">
+<kw name="Go To" owner="Browser">
+<msg time="2024-07-08T07:13:52.346110" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<arg>${BASE_URL}/signup</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.115488" elapsed="0.231625"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:52.438679" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<arg>css=h1</arg>
+<arg>visible</arg>
+<arg>3</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.347113" elapsed="0.092565"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:52.496720" level="INFO">Text: 'Faça seu cadastro'</msg>
+<arg>css=h1</arg>
+<arg>equal</arg>
+<arg>Faça seu cadastro</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.441679" elapsed="0.055041"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:52.114488" elapsed="0.382232"/>
+</kw>
+<kw name="Submit signup form" owner="SignupPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:52.499719" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<arg>css=input[name=name]</arg>
+<arg>${user}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.498719" elapsed="0.094009"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:52.594242" level="INFO">Fills the text 'gregorywillian@hotmail.com.br' in the given field.</msg>
+<arg>css=input[name=email]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.593729" elapsed="0.060043"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:52.655773" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[name=password]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.654772" elapsed="0.040167"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:13:52.696938" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.695939" elapsed="0.094039"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:52.497720" elapsed="0.292258"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:13:52.809508" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.809508" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:52.879513" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.810505" elapsed="0.069008"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:52.926039" level="INFO">Text: 'Oops! Já existe uma conta com o e-mail informado.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.880513" elapsed="0.046524"/>
+</kw>
+<arg>Oops! Já existe uma conta com o e-mail informado.</arg>
+<status status="PASS" start="2024-07-08T07:13:52.808507" elapsed="0.118530"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:13:53.289680" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-4.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-4.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:13:52.928036" elapsed="0.361644"/>
+</kw>
+<tag>dup</tag>
+<status status="PASS" start="2024-07-08T07:13:49.751164" elapsed="3.604550"/>
+</test>
+<test id="s1-s3-t3" name="Campos obrigatórios" line="43">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:13:54.228019" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:54.232019" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:13:54.232019" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:13:54.227019" elapsed="0.005000"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:13:57.730639" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:13:57.730639" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:13:54.233022" elapsed="3.497617"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:54.226019" elapsed="3.504620"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:13:57.734639" level="INFO">${user} = {'name': '', 'email': '', 'password': ''}</msg>
+<var>${user}</var>
+<arg>name=${EMPTY}</arg>
+<arg>email=${EMPTY}</arg>
+<arg>password=${EMPTY}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:13:57.731641" elapsed="0.002998"/>
+</kw>
+<kw name="Go to signup page" owner="SignupPage">
+<kw name="Go To" owner="Browser">
+<msg time="2024-07-08T07:13:58.048972" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<arg>${BASE_URL}/signup</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2024-07-08T07:13:57.735640" elapsed="0.314331"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:58.192026" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<arg>css=h1</arg>
+<arg>visible</arg>
+<arg>3</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.049971" elapsed="0.142055"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:13:58.298651" level="INFO">Text: 'Faça seu cadastro'</msg>
+<arg>css=h1</arg>
+<arg>equal</arg>
+<arg>Faça seu cadastro</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.193027" elapsed="0.105624"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:13:57.734639" elapsed="0.565011"/>
+</kw>
+<kw name="Submit signup form" owner="SignupPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:58.301650" level="INFO">Fills the text '' in the given field.</msg>
+<arg>css=input[name=name]</arg>
+<arg>${user}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.300650" elapsed="0.071525"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:58.374175" level="INFO">Fills the text '' in the given field.</msg>
+<arg>css=input[name=email]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.372175" elapsed="0.063765"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:13:58.438941" level="INFO">Fills the text '' in the given field.</msg>
+<arg>css=input[name=password]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.435940" elapsed="0.038005"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:13:58.476464" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.475460" elapsed="0.099083"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:13:58.299650" elapsed="0.275894"/>
+</kw>
+<kw name="Alert should be" owner="SignupPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:58.680113" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe seu nome completo at state visible</msg>
+<arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.665599" elapsed="0.015522"/>
+</kw>
+<arg>Informe seu nome completo</arg>
+<status status="PASS" start="2024-07-08T07:13:58.664594" elapsed="0.016527"/>
+</kw>
+<kw name="Alert should be" owner="SignupPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:58.695126" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe seu e-email at state visible</msg>
+<arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.682119" elapsed="0.013007"/>
+</kw>
+<arg>Informe seu e-email</arg>
+<status status="PASS" start="2024-07-08T07:13:58.682119" elapsed="0.013007"/>
+</kw>
+<kw name="Alert should be" owner="SignupPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:13:58.710645" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.696125" elapsed="0.014520"/>
+</kw>
+<arg>Informe uma senha com pelo menos 6 digitos</arg>
+<status status="PASS" start="2024-07-08T07:13:58.696125" elapsed="0.015520"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:13:59.081968" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-5.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-5.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:13:58.711645" elapsed="0.370323"/>
+</kw>
+<tag>required</tag>
+<status status="PASS" start="2024-07-08T07:13:53.953719" elapsed="5.138257"/>
+</test>
+<test id="s1-s3-t4" name="Não deve cadastrar com email incorreto" line="61">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:00.032051" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:00.042572" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:00.042572" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:00.031052" elapsed="0.012520"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:02.419744" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:02.419744" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:00.043572" elapsed="2.376172"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:00.030051" elapsed="2.390692"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:14:02.423746" level="INFO">${user} = {'name': 'Gregory Silva', 'email': 'gregor.com.br', 'password': '123456'}</msg>
+<var>${user}</var>
+<arg>name=Gregory Silva</arg>
+<arg>email=gregor.com.br</arg>
+<arg>password=123456</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:14:02.423746" elapsed="0.000000"/>
+</kw>
+<kw name="Go to signup page" owner="SignupPage">
+<kw name="Go To" owner="Browser">
+<msg time="2024-07-08T07:14:02.768975" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<arg>${BASE_URL}/signup</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2024-07-08T07:14:02.425744" elapsed="0.343231"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:02.864495" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<arg>css=h1</arg>
+<arg>visible</arg>
+<arg>3</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:02.769975" elapsed="0.094520"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:02.924016" level="INFO">Text: 'Faça seu cadastro'</msg>
+<arg>css=h1</arg>
+<arg>equal</arg>
+<arg>Faça seu cadastro</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:02.865495" elapsed="0.059522"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:02.424745" elapsed="0.500272"/>
+</kw>
+<kw name="Submit signup form" owner="SignupPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:02.927015" level="INFO">Fills the text 'Gregory Silva' in the given field.</msg>
+<arg>css=input[name=name]</arg>
+<arg>${user}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:02.926016" elapsed="0.075568"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:03.005592" level="INFO">Fills the text 'gregor.com.br' in the given field.</msg>
+<arg>css=input[name=email]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:03.002585" elapsed="0.083535"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:03.089119" level="INFO">Fills the text '123456' in the given field.</msg>
+<arg>css=input[name=password]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:03.088119" elapsed="0.038729"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:03.128848" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:03.127848" elapsed="0.091037"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:02.926016" elapsed="0.292869"/>
+</kw>
+<kw name="Alert should be" owner="SignupPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:03.245885" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Digite um e-mail válido at state visible</msg>
+<arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:03.226885" elapsed="0.020000"/>
+</kw>
+<arg>Digite um e-mail válido</arg>
+<status status="PASS" start="2024-07-08T07:14:03.224885" elapsed="0.022000"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:14:03.613038" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-6.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-6.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:14:03.247884" elapsed="0.366153"/>
+</kw>
+<tag>inv_email</tag>
+<status status="PASS" start="2024-07-08T07:13:59.933009" elapsed="3.681028"/>
+</test>
+<test id="s1-s3-t5" name="Não deve cadastrar com senha muito curta" line="74">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:04.595502" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:04.599502" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:04.601016" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:04.594502" elapsed="0.006514"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:06.902696" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:06.910706" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:04.602023" elapsed="2.309684"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:04.593502" elapsed="2.318205"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2024-06-06T05:26:38.448880" level="INFO">@{password_list} = [ 1 | 12 | 123 | 1234 | 12345 ]</msg>
+<msg time="2024-07-08T07:14:06.918705" level="INFO">@{password_list} = [ 1 | 12 | 123 | 1234 | 12345 ]</msg>
 <var>@{password_list}</var>
 <arg>1</arg>
 <arg>12</arg>
@@ -34,46 +909,46 @@
 <arg>1234</arg>
 <arg>12345</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.433259" elapsed="0.015621"/>
+<status status="PASS" start="2024-07-08T07:14:06.918705" elapsed="0.000000"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:38.448880" level="INFO">${user} = {}</msg>
+<msg time="2024-07-08T07:14:06.923707" level="INFO">${user} = {}</msg>
 <var>${user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:06.923707" elapsed="0.000000"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:38.448880" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '1'}</msg>
+<msg time="2024-07-08T07:14:06.924707" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '1'}</msg>
 <var>${user}</var>
 <arg>name=Gregory</arg>
 <arg>email=gregory@yahoo.com</arg>
 <arg>password=${password}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:06.924707" elapsed="0.000000"/>
 </kw>
 <kw name="Go to signup page" owner="SignupPage">
 <kw name="Go To" owner="Browser">
-<msg time="2024-06-06T05:26:38.794440" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<msg time="2024-07-08T07:14:07.246909" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
 <arg>${BASE_URL}/signup</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="0.345560"/>
+<status status="PASS" start="2024-07-08T07:14:06.925704" elapsed="0.322205"/>
 </kw>
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:38.954115" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<msg time="2024-07-08T07:14:07.315434" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
 <arg>css=h1</arg>
 <arg>visible</arg>
 <arg>3</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.795946" elapsed="0.158169"/>
+<status status="PASS" start="2024-07-08T07:14:07.247909" elapsed="0.068525"/>
 </kw>
 <kw name="Get Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.053555" level="INFO">Text: 'Faça seu cadastro'</msg>
+<msg time="2024-07-08T07:14:07.389442" level="INFO">Text: 'Faça seu cadastro'</msg>
 <arg>css=h1</arg>
 <arg>equal</arg>
 <arg>Faça seu cadastro</arg>
@@ -81,103 +956,103 @@
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:38.954115" elapsed="0.099440"/>
+<status status="PASS" start="2024-07-08T07:14:07.316434" elapsed="0.073008"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="0.605670"/>
+<status status="PASS" start="2024-07-08T07:14:06.925704" elapsed="0.464739"/>
 </kw>
 <kw name="Submit signup form" owner="SignupPage">
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.056534" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<msg time="2024-07-08T07:14:07.392439" level="INFO">Fills the text 'Gregory' in the given field.</msg>
 <arg>css=input[name=name]</arg>
 <arg>${user}[name]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.055541" elapsed="0.082332"/>
+<status status="PASS" start="2024-07-08T07:14:07.391439" elapsed="0.087037"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.140881" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
+<msg time="2024-07-08T07:14:07.479475" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
 <arg>css=input[name=email]</arg>
 <arg>${user}[email]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.140881" elapsed="0.082441"/>
+<status status="PASS" start="2024-07-08T07:14:07.478476" elapsed="0.055122"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.225312" level="INFO">Fills the text '1' in the given field.</msg>
+<msg time="2024-07-08T07:14:07.534596" level="INFO">Fills the text '1' in the given field.</msg>
 <arg>css=input[name=password]</arg>
 <arg>${user}[password]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.224319" elapsed="0.046745"/>
+<status status="PASS" start="2024-07-08T07:14:07.533598" elapsed="0.040001"/>
 </kw>
 <kw name="Click" owner="Browser">
-<msg time="2024-06-06T05:26:39.273054" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<msg time="2024-07-08T07:14:07.574599" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
 <arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.272062" elapsed="0.132967"/>
+<status status="PASS" start="2024-07-08T07:14:07.573599" elapsed="0.094556"/>
 </kw>
 <arg>${user}</arg>
-<status status="PASS" start="2024-06-06T05:26:39.054550" elapsed="0.350479"/>
+<status status="PASS" start="2024-07-08T07:14:07.390443" elapsed="0.277712"/>
 </kw>
 <kw name="Alert should be" owner="SignupPage">
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:39.422499" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<msg time="2024-07-08T07:14:07.686162" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
 <arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
 <arg>visible</arg>
 <arg>5</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.405029" elapsed="0.017470"/>
+<status status="PASS" start="2024-07-08T07:14:07.670154" elapsed="0.018007"/>
 </kw>
 <arg>Informe uma senha com pelo menos 6 digitos</arg>
-<status status="PASS" start="2024-06-06T05:26:39.405029" elapsed="0.017470"/>
+<status status="PASS" start="2024-07-08T07:14:07.669156" elapsed="0.019005"/>
 </kw>
 <var name="${password}">1</var>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="0.973619"/>
+<status status="PASS" start="2024-07-08T07:14:06.922707" elapsed="0.765454"/>
 </iter>
 <iter>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:39.437880" level="INFO">${user} = {}</msg>
+<msg time="2024-07-08T07:14:07.690162" level="INFO">${user} = {}</msg>
 <var>${user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.436877" elapsed="0.001003"/>
+<status status="PASS" start="2024-07-08T07:14:07.689162" elapsed="0.001000"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:39.438822" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '12'}</msg>
+<msg time="2024-07-08T07:14:07.691162" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '12'}</msg>
 <var>${user}</var>
 <arg>name=Gregory</arg>
 <arg>email=gregory@yahoo.com</arg>
 <arg>password=${password}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.438822" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:07.690162" elapsed="0.001000"/>
 </kw>
 <kw name="Go to signup page" owner="SignupPage">
 <kw name="Go To" owner="Browser">
-<msg time="2024-06-06T05:26:39.626753" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<msg time="2024-07-08T07:14:07.872724" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
 <arg>${BASE_URL}/signup</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.438822" elapsed="0.187931"/>
+<status status="PASS" start="2024-07-08T07:14:07.692161" elapsed="0.180563"/>
 </kw>
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:39.723143" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<msg time="2024-07-08T07:14:07.914249" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
 <arg>css=h1</arg>
 <arg>visible</arg>
 <arg>3</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.627746" elapsed="0.095397"/>
+<status status="PASS" start="2024-07-08T07:14:07.873725" elapsed="0.040524"/>
 </kw>
 <kw name="Get Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.787155" level="INFO">Text: 'Faça seu cadastro'</msg>
+<msg time="2024-07-08T07:14:08.005323" level="INFO">Text: 'Faça seu cadastro'</msg>
 <arg>css=h1</arg>
 <arg>equal</arg>
 <arg>Faça seu cadastro</arg>
@@ -185,103 +1060,103 @@
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.723143" elapsed="0.064012"/>
+<status status="PASS" start="2024-07-08T07:14:07.915250" elapsed="0.090073"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:39.438822" elapsed="0.348333"/>
+<status status="PASS" start="2024-07-08T07:14:07.692161" elapsed="0.313162"/>
 </kw>
 <kw name="Submit signup form" owner="SignupPage">
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.787155" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.008322" level="INFO">Fills the text 'Gregory' in the given field.</msg>
 <arg>css=input[name=name]</arg>
 <arg>${user}[name]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.787155" elapsed="0.058304"/>
+<status status="PASS" start="2024-07-08T07:14:08.006321" elapsed="0.046059"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.854819" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.058381" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
 <arg>css=input[name=email]</arg>
 <arg>${user}[email]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.853788" elapsed="0.051478"/>
+<status status="PASS" start="2024-07-08T07:14:08.056380" elapsed="0.061046"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:39.907254" level="INFO">Fills the text '12' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.119427" level="INFO">Fills the text '12' in the given field.</msg>
 <arg>css=input[name=password]</arg>
 <arg>${user}[password]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.906260" elapsed="0.037992"/>
+<status status="PASS" start="2024-07-08T07:14:08.118426" elapsed="0.036528"/>
 </kw>
 <kw name="Click" owner="Browser">
-<msg time="2024-06-06T05:26:39.953370" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<msg time="2024-07-08T07:14:08.156957" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
 <arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:39.944252" elapsed="0.096553"/>
+<status status="PASS" start="2024-07-08T07:14:08.154954" elapsed="0.079059"/>
 </kw>
 <arg>${user}</arg>
-<status status="PASS" start="2024-06-06T05:26:39.787155" elapsed="0.253650"/>
+<status status="PASS" start="2024-07-08T07:14:08.006321" elapsed="0.228692"/>
 </kw>
 <kw name="Alert should be" owner="SignupPage">
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:40.060136" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<msg time="2024-07-08T07:14:08.251011" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
 <arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
 <arg>visible</arg>
 <arg>5</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.042791" elapsed="0.017345"/>
+<status status="PASS" start="2024-07-08T07:14:08.236011" elapsed="0.016000"/>
 </kw>
 <arg>Informe uma senha com pelo menos 6 digitos</arg>
-<status status="PASS" start="2024-06-06T05:26:40.041799" elapsed="0.018337"/>
+<status status="PASS" start="2024-07-08T07:14:08.235013" elapsed="0.016998"/>
 </kw>
 <var name="${password}">12</var>
-<status status="PASS" start="2024-06-06T05:26:39.436877" elapsed="0.623259"/>
+<status status="PASS" start="2024-07-08T07:14:07.689162" elapsed="0.562849"/>
 </iter>
 <iter>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:40.060136" level="INFO">${user} = {}</msg>
+<msg time="2024-07-08T07:14:08.254010" level="INFO">${user} = {}</msg>
 <var>${user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.060136" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:08.253011" elapsed="0.000999"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:40.060136" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '123'}</msg>
+<msg time="2024-07-08T07:14:08.256012" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '123'}</msg>
 <var>${user}</var>
 <arg>name=Gregory</arg>
 <arg>email=gregory@yahoo.com</arg>
 <arg>password=${password}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.060136" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:08.255012" elapsed="0.001000"/>
 </kw>
 <kw name="Go to signup page" owner="SignupPage">
 <kw name="Go To" owner="Browser">
-<msg time="2024-06-06T05:26:40.415448" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<msg time="2024-07-08T07:14:08.413587" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
 <arg>${BASE_URL}/signup</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.060136" elapsed="0.356306"/>
+<status status="PASS" start="2024-07-08T07:14:08.260011" elapsed="0.154577"/>
 </kw>
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:40.476799" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<msg time="2024-07-08T07:14:08.497593" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
 <arg>css=h1</arg>
 <arg>visible</arg>
 <arg>3</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.426301" elapsed="0.050498"/>
+<status status="PASS" start="2024-07-08T07:14:08.414588" elapsed="0.083005"/>
 </kw>
 <kw name="Get Text" owner="Browser">
-<msg time="2024-06-06T05:26:40.553731" level="INFO">Text: 'Faça seu cadastro'</msg>
+<msg time="2024-07-08T07:14:08.552162" level="INFO">Text: 'Faça seu cadastro'</msg>
 <arg>css=h1</arg>
 <arg>equal</arg>
 <arg>Faça seu cadastro</arg>
@@ -289,103 +1164,103 @@
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.476799" elapsed="0.076932"/>
+<status status="PASS" start="2024-07-08T07:14:08.498593" elapsed="0.053569"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:40.060136" elapsed="0.493595"/>
+<status status="PASS" start="2024-07-08T07:14:08.259012" elapsed="0.293150"/>
 </kw>
 <kw name="Submit signup form" owner="SignupPage">
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:40.553731" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.558162" level="INFO">Fills the text 'Gregory' in the given field.</msg>
 <arg>css=input[name=name]</arg>
 <arg>${user}[name]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.553731" elapsed="0.070980"/>
+<status status="PASS" start="2024-07-08T07:14:08.556162" elapsed="0.045528"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:40.625702" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.611215" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
 <arg>css=input[name=email]</arg>
 <arg>${user}[email]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.624711" elapsed="0.058355"/>
+<status status="PASS" start="2024-07-08T07:14:08.608208" elapsed="0.057529"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:40.686054" level="INFO">Fills the text '123' in the given field.</msg>
+<msg time="2024-07-08T07:14:08.666744" level="INFO">Fills the text '123' in the given field.</msg>
 <arg>css=input[name=password]</arg>
 <arg>${user}[password]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.684067" elapsed="0.042158"/>
+<status status="PASS" start="2024-07-08T07:14:08.665737" elapsed="0.041599"/>
 </kw>
 <kw name="Click" owner="Browser">
-<msg time="2024-06-06T05:26:40.726225" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<msg time="2024-07-08T07:14:08.709332" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
 <arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.726225" elapsed="0.072547"/>
+<status status="PASS" start="2024-07-08T07:14:08.708333" elapsed="0.074525"/>
 </kw>
 <arg>${user}</arg>
-<status status="PASS" start="2024-06-06T05:26:40.553731" elapsed="0.245041"/>
+<status status="PASS" start="2024-07-08T07:14:08.553161" elapsed="0.229697"/>
 </kw>
 <kw name="Alert should be" owner="SignupPage">
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:40.816055" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<msg time="2024-07-08T07:14:08.799863" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
 <arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
 <arg>visible</arg>
 <arg>5</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.798772" elapsed="0.017283"/>
+<status status="PASS" start="2024-07-08T07:14:08.783858" elapsed="0.017006"/>
 </kw>
 <arg>Informe uma senha com pelo menos 6 digitos</arg>
-<status status="PASS" start="2024-06-06T05:26:40.798772" elapsed="0.018276"/>
+<status status="PASS" start="2024-07-08T07:14:08.783858" elapsed="0.017006"/>
 </kw>
 <var name="${password}">123</var>
-<status status="PASS" start="2024-06-06T05:26:40.060136" elapsed="0.756912"/>
+<status status="PASS" start="2024-07-08T07:14:08.252011" elapsed="0.548853"/>
 </iter>
 <iter>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:40.819036" level="INFO">${user} = {}</msg>
+<msg time="2024-07-08T07:14:08.801863" level="INFO">${user} = {}</msg>
 <var>${user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.818041" elapsed="0.000995"/>
+<status status="PASS" start="2024-07-08T07:14:08.801863" elapsed="0.000000"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:40.820029" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '1234'}</msg>
+<msg time="2024-07-08T07:14:08.802862" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '1234'}</msg>
 <var>${user}</var>
 <arg>name=Gregory</arg>
 <arg>email=gregory@yahoo.com</arg>
 <arg>password=${password}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.819036" elapsed="0.000993"/>
+<status status="PASS" start="2024-07-08T07:14:08.802862" elapsed="0.000000"/>
 </kw>
 <kw name="Go to signup page" owner="SignupPage">
 <kw name="Go To" owner="Browser">
-<msg time="2024-06-06T05:26:41.008197" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<msg time="2024-07-08T07:14:08.991914" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
 <arg>${BASE_URL}/signup</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2024-06-06T05:26:40.821022" elapsed="0.187175"/>
+<status status="PASS" start="2024-07-08T07:14:08.807381" elapsed="0.184533"/>
 </kw>
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:41.104474" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<msg time="2024-07-08T07:14:09.042945" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
 <arg>css=h1</arg>
 <arg>visible</arg>
 <arg>3</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.009191" elapsed="0.095283"/>
+<status status="PASS" start="2024-07-08T07:14:08.992914" elapsed="0.051031"/>
 </kw>
 <kw name="Get Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.153734" level="INFO">Text: 'Faça seu cadastro'</msg>
+<msg time="2024-07-08T07:14:09.146467" level="INFO">Text: 'Faça seu cadastro'</msg>
 <arg>css=h1</arg>
 <arg>equal</arg>
 <arg>Faça seu cadastro</arg>
@@ -393,103 +1268,103 @@
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.104474" elapsed="0.049260"/>
+<status status="PASS" start="2024-07-08T07:14:09.043945" elapsed="0.102522"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:40.820029" elapsed="0.333705"/>
+<status status="PASS" start="2024-07-08T07:14:08.806380" elapsed="0.341087"/>
 </kw>
 <kw name="Submit signup form" owner="SignupPage">
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.153734" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.149467" level="INFO">Fills the text 'Gregory' in the given field.</msg>
 <arg>css=input[name=name]</arg>
 <arg>${user}[name]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.153734" elapsed="0.087482"/>
+<status status="PASS" start="2024-07-08T07:14:09.148466" elapsed="0.058570"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.242210" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.209035" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
 <arg>css=input[name=email]</arg>
 <arg>${user}[email]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.241216" elapsed="0.079732"/>
+<status status="PASS" start="2024-07-08T07:14:09.208036" elapsed="0.050558"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.323938" level="INFO">Fills the text '1234' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.261592" level="INFO">Fills the text '1234' in the given field.</msg>
 <arg>css=input[name=password]</arg>
 <arg>${user}[password]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.321951" elapsed="0.061267"/>
+<status status="PASS" start="2024-07-08T07:14:09.259594" elapsed="0.041006"/>
 </kw>
 <kw name="Click" owner="Browser">
-<msg time="2024-06-06T05:26:41.386207" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<msg time="2024-07-08T07:14:09.302599" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
 <arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.383218" elapsed="0.074659"/>
+<status status="PASS" start="2024-07-08T07:14:09.301600" elapsed="0.079038"/>
 </kw>
 <arg>${user}</arg>
-<status status="PASS" start="2024-06-06T05:26:41.153734" elapsed="0.304143"/>
+<status status="PASS" start="2024-07-08T07:14:09.147467" elapsed="0.233171"/>
 </kw>
 <kw name="Alert should be" owner="SignupPage">
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:41.475050" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<msg time="2024-07-08T07:14:09.399648" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
 <arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
 <arg>visible</arg>
 <arg>5</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.457877" elapsed="0.017173"/>
+<status status="PASS" start="2024-07-08T07:14:09.381636" elapsed="0.019012"/>
 </kw>
 <arg>Informe uma senha com pelo menos 6 digitos</arg>
-<status status="PASS" start="2024-06-06T05:26:41.457877" elapsed="0.017173"/>
+<status status="PASS" start="2024-07-08T07:14:09.381636" elapsed="0.020012"/>
 </kw>
 <var name="${password}">1234</var>
-<status status="PASS" start="2024-06-06T05:26:40.817048" elapsed="0.658002"/>
+<status status="PASS" start="2024-07-08T07:14:08.800864" elapsed="0.601782"/>
 </iter>
 <iter>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:41.475050" level="INFO">${user} = {}</msg>
+<msg time="2024-07-08T07:14:09.407162" level="INFO">${user} = {}</msg>
 <var>${user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.475050" elapsed="0.000000"/>
+<status status="PASS" start="2024-07-08T07:14:09.407162" elapsed="0.001001"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-06-06T05:26:41.475050" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '12345'}</msg>
+<msg time="2024-07-08T07:14:09.409164" level="INFO">${user} = {'name': 'Gregory', 'email': 'gregory@yahoo.com', 'password': '12345'}</msg>
 <var>${user}</var>
 <arg>name=Gregory</arg>
 <arg>email=gregory@yahoo.com</arg>
 <arg>password=${password}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.475050" elapsed="0.011657"/>
+<status status="PASS" start="2024-07-08T07:14:09.408163" elapsed="0.001001"/>
 </kw>
 <kw name="Go to signup page" owner="SignupPage">
 <kw name="Go To" owner="Browser">
-<msg time="2024-06-06T05:26:41.670351" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
+<msg time="2024-07-08T07:14:09.628268" level="INFO">Successfully opened URL http://localhost:3000/signup</msg>
 <arg>${BASE_URL}/signup</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.487709" elapsed="0.182642"/>
+<status status="PASS" start="2024-07-08T07:14:09.410163" elapsed="0.218105"/>
 </kw>
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:41.765364" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
+<msg time="2024-07-08T07:14:09.680985" level="INFO">Waited for Element with selector css=h1 at state visible</msg>
 <arg>css=h1</arg>
 <arg>visible</arg>
 <arg>3</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.671343" elapsed="0.094021"/>
+<status status="PASS" start="2024-07-08T07:14:09.629265" elapsed="0.052720"/>
 </kw>
 <kw name="Get Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.824227" level="INFO">Text: 'Faça seu cadastro'</msg>
+<msg time="2024-07-08T07:14:09.750057" level="INFO">Text: 'Faça seu cadastro'</msg>
 <arg>css=h1</arg>
 <arg>equal</arg>
 <arg>Faça seu cadastro</arg>
@@ -497,96 +1372,1283 @@
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.766358" elapsed="0.057869"/>
+<status status="PASS" start="2024-07-08T07:14:09.681985" elapsed="0.069072"/>
 </kw>
-<status status="PASS" start="2024-06-06T05:26:41.486707" elapsed="0.337520"/>
+<status status="PASS" start="2024-07-08T07:14:09.409164" elapsed="0.341893"/>
 </kw>
 <kw name="Submit signup form" owner="SignupPage">
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.826213" level="INFO">Fills the text 'Gregory' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.753056" level="INFO">Fills the text 'Gregory' in the given field.</msg>
 <arg>css=input[name=name]</arg>
 <arg>${user}[name]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.825220" elapsed="0.063815"/>
+<status status="PASS" start="2024-07-08T07:14:09.752056" elapsed="0.048001"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.890028" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.802056" level="INFO">Fills the text 'gregory@yahoo.com' in the given field.</msg>
 <arg>css=input[name=email]</arg>
 <arg>${user}[email]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.889035" elapsed="0.051472"/>
+<status status="PASS" start="2024-07-08T07:14:09.801056" elapsed="0.073575"/>
 </kw>
 <kw name="Fill Text" owner="Browser">
-<msg time="2024-06-06T05:26:41.941499" level="INFO">Fills the text '12345' in the given field.</msg>
+<msg time="2024-07-08T07:14:09.875629" level="INFO">Fills the text '12345' in the given field.</msg>
 <arg>css=input[name=password]</arg>
 <arg>${user}[password]</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.940507" elapsed="0.044778"/>
+<status status="PASS" start="2024-07-08T07:14:09.874631" elapsed="0.058532"/>
 </kw>
 <kw name="Click" owner="Browser">
-<msg time="2024-06-06T05:26:41.987280" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
+<msg time="2024-07-08T07:14:09.935683" level="INFO">Clicks the element 'css=button[type=submit] &gt;&gt; text=cadastrar'.</msg>
 <arg>css=button[type=submit] &gt;&gt; text=cadastrar</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2024-06-06T05:26:41.986287" elapsed="0.072343"/>
+<status status="PASS" start="2024-07-08T07:14:09.934678" elapsed="0.080526"/>
 </kw>
 <arg>${user}</arg>
-<status status="PASS" start="2024-06-06T05:26:41.825220" elapsed="0.243441"/>
+<status status="PASS" start="2024-07-08T07:14:09.751057" elapsed="0.264147"/>
 </kw>
 <kw name="Alert should be" owner="SignupPage">
 <kw name="Wait For Elements State" owner="Browser">
-<msg time="2024-06-06T05:26:42.089277" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
+<msg time="2024-07-08T07:14:10.033263" level="INFO">Waited for Element with selector css=.alert-error &gt;&gt; text=Informe uma senha com pelo menos 6 digitos at state visible</msg>
 <arg>css=.alert-error &gt;&gt; text=${expected_text}</arg>
 <arg>visible</arg>
 <arg>5</arg>
 <tag>PageContent</tag>
 <tag>Wait</tag>
 <doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2024-06-06T05:26:42.069665" elapsed="0.019612"/>
+<status status="PASS" start="2024-07-08T07:14:10.016204" elapsed="0.018059"/>
 </kw>
 <arg>Informe uma senha com pelo menos 6 digitos</arg>
-<status status="PASS" start="2024-06-06T05:26:42.069665" elapsed="0.019612"/>
+<status status="PASS" start="2024-07-08T07:14:10.016204" elapsed="0.018059"/>
 </kw>
 <var name="${password}">12345</var>
-<status status="PASS" start="2024-06-06T05:26:41.475050" elapsed="0.614227"/>
+<status status="PASS" start="2024-07-08T07:14:09.406161" elapsed="0.628102"/>
 </iter>
 <var>${password}</var>
 <value>@{password_list}</value>
-<status status="PASS" start="2024-06-06T05:26:38.448880" elapsed="3.640397"/>
+<status status="PASS" start="2024-07-08T07:14:06.919704" elapsed="3.114559"/>
 </for>
 <kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
-<msg time="2024-06-06T05:26:42.500197" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<msg time="2024-07-08T07:14:10.544234" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-7.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-7.png" width="800px"/&gt;&lt;/a&gt;</msg>
 <tag>PageContent</tag>
 <doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
-<status status="PASS" start="2024-06-06T05:26:42.089277" elapsed="0.410920"/>
+<status status="PASS" start="2024-07-08T07:14:10.196327" elapsed="0.348906"/>
 </kw>
 <tag>temp</tag>
-<status status="PASS" start="2024-06-06T05:26:31.293060" elapsed="11.214173"/>
+<status status="PASS" start="2024-07-08T07:14:04.499974" elapsed="6.045259"/>
 </test>
 <doc>Cenários de testes do cadastros de usuários</doc>
-<status status="PASS" start="2024-06-06T05:26:27.339876" elapsed="15.520087"/>
+<status status="PASS" start="2024-07-08T07:13:44.492909" elapsed="26.693084"/>
 </suite>
-<status status="PASS" start="2024-06-06T05:26:27.253195" elapsed="15.628194"/>
+<suite id="s1-s4" name="Tasks" source="C:\QAx\projects\mark85-robot-express\tests\tasks">
+<suite id="s1-s4-s1" name="Create" source="C:\QAx\projects\mark85-robot-express\tests\tasks\create.robot">
+<test id="s1-s4-s1-t1" name="Deve poder cadastrar uma nova tarefas" line="14">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:11.666509" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:11.698574" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:11.698574" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:11.665508" elapsed="0.033066"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:13.737466" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:13.737466" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:11.698574" elapsed="2.038892"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:11.664509" elapsed="2.073957"/>
+</kw>
+<kw name="Get Fixture" owner="base">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2024-07-08T07:14:13.744465" level="INFO">${data} = {'create': {'user': {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma nova versão so ipod', 'tags': ['ios', 'music', 'ipod']}}...</msg>
+<var>${data}</var>
+<arg>${EXECDIR}/resources/Fixtures/${file_name}.Json</arg>
+<arg>encoding=utf-8</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2024-07-08T07:14:13.741465" elapsed="0.003000"/>
+</kw>
+<return>
+<value>${data}[${scenario}]</value>
+<status status="PASS" start="2024-07-08T07:14:13.744465" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-08T07:14:13.745468" level="INFO">${data} = {'user': {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma nova versão so ipod', 'tags': ['ios', 'music', 'ipod']}}</msg>
+<var>${data}</var>
+<arg>tasks</arg>
+<arg>create</arg>
+<status status="PASS" start="2024-07-08T07:14:13.740466" elapsed="0.005002"/>
+</kw>
+<kw name="Reset user from database" owner="base">
+<kw name="Clean user from database" owner="database">
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:14:13.746466" elapsed="0.038999"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:14:13.900514" level="INFO">{'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:13.785465" elapsed="0.116050"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:13.746466" elapsed="0.155049"/>
+</kw>
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:13.910033" level="INFO">Fills the text 'gregorywillian@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:13.902513" elapsed="0.193180"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:14.097694" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.096693" elapsed="0.051043"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:14.148736" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.147736" elapsed="0.100043"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:13.901515" elapsed="0.346264"/>
+</kw>
+<kw name="User should be logger in" owner="Header">
+<kw name="Split String" owner="String">
+<msg time="2024-07-08T07:14:14.249777" level="INFO">@{splited_name} = [ Gregory | W | Silva ]</msg>
+<var>@{splited_name}</var>
+<arg>${name}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.249777" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-08T07:14:14.250776" level="INFO">['Gregory', 'W', 'Silva']</msg>
+<arg>${splited_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.249777" elapsed="0.000999"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:14.250776" level="INFO">${element} = css=header .right small</msg>
+<var>${element}</var>
+<arg>css=header .right small</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.250776" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:14.531886" level="INFO">Waited for Element with selector css=header .right small at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.251776" elapsed="0.280110"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:14.598700" level="INFO">Text: 'Olá, Gregory'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>Olá, ${splited_name}[0]</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.532885" elapsed="0.065815"/>
+</kw>
+<arg>${data}[user][name]</arg>
+<status status="PASS" start="2024-07-08T07:14:14.248777" elapsed="0.349923"/>
+</kw>
+<kw name="Go to task form" owner="Header">
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:14.756569" level="INFO">Clicks the element 'css=.button-add'.</msg>
+<arg>css=.button-add</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:14.755569" elapsed="0.139109"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:14.754570" elapsed="0.141108"/>
+</kw>
+<kw name="Submit task form" owner="TaskCreatePage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:15.039719" level="INFO">Fills the text 'Criar uma nova versão so ipod' in the given field.</msg>
+<arg>css=input[placeholder$=tarefa]</arg>
+<arg>${task}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:15.038720" elapsed="0.034517"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:15.078237" level="INFO">Fills the text 'ios' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:15.077238" elapsed="0.054523"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:16.133212" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:15.132760" elapsed="1.000452"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:16.133722" elapsed="0.070010"/>
+</kw>
+<var name="${tag}">ios</var>
+<status status="PASS" start="2024-07-08T07:14:15.075237" elapsed="1.128495"/>
+</iter>
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:16.205733" level="INFO">Fills the text 'music' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:16.204733" elapsed="0.023039"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:17.229124" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:16.228772" elapsed="1.000864"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:17.229636" elapsed="0.031015"/>
+</kw>
+<var name="${tag}">music</var>
+<status status="PASS" start="2024-07-08T07:14:16.204733" elapsed="1.055918"/>
+</iter>
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:17.262650" level="INFO">Fills the text 'ipod' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:17.261651" elapsed="0.032041"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:18.295037" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:17.294692" elapsed="1.000345"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:18.295550" elapsed="0.036566"/>
+</kw>
+<var name="${tag}">ipod</var>
+<status status="PASS" start="2024-07-08T07:14:17.261651" elapsed="1.070465"/>
+</iter>
+<var>${tag}</var>
+<value>@{task}[tags]</value>
+<status status="PASS" start="2024-07-08T07:14:15.074237" elapsed="3.257879"/>
+</for>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:18.336125" level="INFO">Clicks the element 'css=button &gt;&gt; text=Cadastrar'.</msg>
+<arg>css=button &gt;&gt; text=Cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:18.335124" elapsed="0.074050"/>
+</kw>
+<arg>${data}[task]</arg>
+<status status="PASS" start="2024-07-08T07:14:15.037718" elapsed="3.371456"/>
+</kw>
+<kw name="Task should be registered" owner="TasksPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:18.600815" level="INFO">Waited for Element with selector css=.task-todo &gt;&gt; text=Criar uma nova versão so ipod at state visible</msg>
+<arg>css=.task-todo &gt;&gt; text=${task_name}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:18.430690" elapsed="0.170125"/>
+</kw>
+<arg>${data}[task][name]</arg>
+<status status="PASS" start="2024-07-08T07:14:18.429690" elapsed="0.171125"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:14:19.007823" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-8.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-8.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:14:18.601814" elapsed="0.407008"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:11.618504" elapsed="7.390318"/>
+</test>
+<test id="s1-s4-s1-t2" name="Não deve cadastrar tarefa com nome duplicado" line="27">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:19.918987" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:19.983508" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:19.988513" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:19.917987" elapsed="0.071527"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:22.135547" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:22.135547" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:19.989514" elapsed="2.146033"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:19.916987" elapsed="2.218560"/>
+</kw>
+<kw name="Get Fixture" owner="base">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2024-07-08T07:14:22.141547" level="INFO">${data} = {'create': {'user': {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma nova versão so ipod', 'tags': ['ios', 'music', 'ipod']}}...</msg>
+<var>${data}</var>
+<arg>${EXECDIR}/resources/Fixtures/${file_name}.Json</arg>
+<arg>encoding=utf-8</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.140547" elapsed="0.002000"/>
+</kw>
+<return>
+<value>${data}[${scenario}]</value>
+<status status="PASS" start="2024-07-08T07:14:22.142547" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-08T07:14:22.143546" level="INFO">${data} = {'user': {'name': 'Greg', 'email': 'greg@yahoo.com.br', 'password': 'Gwsilva2014@'}, 'task': {'name': 'Estudar em casa', 'tags': []}}</msg>
+<var>${data}</var>
+<arg>tasks</arg>
+<arg>duplicate</arg>
+<status status="PASS" start="2024-07-08T07:14:22.139547" elapsed="0.003999"/>
+</kw>
+<kw name="Reset user from database" owner="base">
+<kw name="Clean user from database" owner="database">
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.145062" elapsed="0.038009"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:14:22.265117" level="INFO">{'name': 'Greg', 'email': 'greg@yahoo.com.br', 'password': 'Gwsilva2014@'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:22.184069" elapsed="0.081048"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.143546" elapsed="0.121571"/>
+</kw>
+<kw name="Create a new task API" owner="base">
+<kw name="POST user Session" owner="services">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.268114" level="INFO">${payload} = {'email': 'greg@yahoo.com.br', 'password': 'Gwsilva2014@'}</msg>
+<var>${payload}</var>
+<arg>email=${user}[email]</arg>
+<arg>password=${user}[password]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.267115" elapsed="0.000999"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-08T07:14:22.345148" level="INFO">POST Request : url=http://localhost:3333/sessions 
+ path_url=/sessions 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '58', 'Content-Type': 'application/json'} 
+ body=b'{"email": "greg@yahoo.com.br", "password": "Gwsilva2014@"}' 
+ </msg>
+<msg time="2024-07-08T07:14:22.345148" level="INFO">POST Response : url=http://localhost:3333/sessions 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '570', 'ETag': 'W/"23a-iMlvUz3r9BbUfvS5yALI6KenHnk"', 'Date': 'Mon, 08 Jul 2024 10:14:22 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"user":{"_id":"668bbbfebce19ab2f4661bf0","name":"Greg","email":"greg@yahoo.com.br","password":"$2b$08$Qmvgvbj64XdqYAtK3WbPc.TF7zAUmg/wfPOn2J54SlAxSDjQIKhcK"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYmZlYmNlMTlhYjJmNDY2MWJmMCIsInVzZXIiOnsiX2lkIjoiNjY4YmJiZmViY2UxOWFiMmY0NjYxYmYwIiwibmFtZSI6IkdyZWciLCJlbWFpbCI6ImdyZWdAeWFob28uY29tLmJyIiwicGFzc3dvcmQiOiIkMmIkMDgkUW12Z3ZiajY0WGRxWUF0SzNXYlBjLlRGN3pBVW1nL3dmUE9uMko1NFNsQXhTRGpRSUtoY0sifSwiaWF0IjoxNzIwNDMzNjYyLCJleHAiOjE3MjEyOTc2NjJ9.nO49QxCHly9Z6wgB4yu8F0gcvZKw-WvtzZgWJcEvCy4","expires_in":"10d"} 
+ </msg>
+<msg time="2024-07-08T07:14:22.345148" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>url=http://localhost:3333/sessions</arg>
+<arg>json=${payload}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.268114" elapsed="0.077034"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.347147" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYmZlYmNlMTlhYjJmNDY2MWJmMCIsInVzZXIiOnsiX2lkIjoiNjY4YmJiZmViY2UxOWFiMmY0NjYxYmYwIiwibmFtZSI6IkdyZWciLCJlbWFpbCI6ImdyZWdAeWFob28uY29tLmJyIiwicGFzc3d...</msg>
+<var>${token}</var>
+<arg>${resp.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.346147" elapsed="0.001000"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.348147" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYmZlYmNlMTlhYjJmNDY2MWJmMCIsInVzZXIiOnsiX2lkIjoiNjY4YmJiZmViY2UxOWFiMmY0NjYxYmYwIiwibmFtZSI6IkdyZWciLCJlbWFpbCI6ImdyZWdAeWFob28uY29tLmJyIiwicGFzc3d...</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.348147" elapsed="0.000000"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.267115" elapsed="0.081032"/>
+</kw>
+<kw name="POST a new task" owner="services">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.350147" level="INFO">${headers} = {'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYmZlYmNlMTlhYjJmNDY2MWJmMCIsInVzZXIiOnsiX2lkIjoiNjY4YmJiZmViY2UxOWFiMmY0NjYxYmYwIiwibmFtZSI6IkdyZWciLCJlbWFpbCI6ImdyZWdAeWFob28u...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.349147" elapsed="0.001000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-08T07:14:22.408154" level="INFO">POST Request : url=http://localhost:3333/tasks 
+ path_url=/tasks 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYmZlYmNlMTlhYjJmNDY2MWJmMCIsInVzZXIiOnsiX2lkIjoiNjY4YmJiZmViY2UxOWFiMmY0NjYxYmYwIiwibmFtZSI6IkdyZWciLCJlbWFpbCI6ImdyZWdAeWFob28uY29tLmJyIiwicGFzc3dvcmQiOiIkMmIkMDgkUW12Z3ZiajY0WGRxWUF0SzNXYlBjLlRGN3pBVW1nL3dmUE9uMko1NFNsQXhTRGpRSUtoY0sifSwiaWF0IjoxNzIwNDMzNjYyLCJleHAiOjE3MjEyOTc2NjJ9.nO49QxCHly9Z6wgB4yu8F0gcvZKw-WvtzZgWJcEvCy4', 'Content-Length': '39', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Estudar em casa", "tags": []}' 
+ </msg>
+<msg time="2024-07-08T07:14:22.408154" level="INFO">POST Response : url=http://localhost:3333/tasks 
+ status=201, reason=Created 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '119', 'ETag': 'W/"77-m4Iqu3ZGatYPsyCvz9LVfnpeZ0k"', 'Date': 'Mon, 08 Jul 2024 10:14:22 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"name":"Estudar em casa","is_done":false,"tags":[],"user":"668bbbfebce19ab2f4661bf0","_id":"668bbbfe74d50c0ab26cbe7d"} 
+ </msg>
+<arg>url=http://localhost:3333/tasks</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=201</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.350147" elapsed="0.059007"/>
+</kw>
+<arg>${data}[task]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.349147" elapsed="0.060007"/>
+</kw>
+<arg>${data}</arg>
+<status status="PASS" start="2024-07-08T07:14:22.266115" elapsed="0.143039"/>
+</kw>
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:22.412153" level="INFO">Fills the text 'greg@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.411152" elapsed="0.107566"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:22.520719" level="INFO">Fills the text 'Gwsilva2014@' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.518718" elapsed="0.047519"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:22.566237" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.566237" elapsed="0.093828"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.410152" elapsed="0.250911"/>
+</kw>
+<kw name="User should be logger in" owner="Header">
+<kw name="Split String" owner="String">
+<msg time="2024-07-08T07:14:22.663061" level="INFO">@{splited_name} = [ Greg ]</msg>
+<var>@{splited_name}</var>
+<arg>${name}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.662062" elapsed="0.000999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.663061" level="INFO">['Greg']</msg>
+<arg>${splited_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.663061" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:22.664061" level="INFO">${element} = css=header .right small</msg>
+<var>${element}</var>
+<arg>css=header .right small</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.663061" elapsed="0.001000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:22.874462" level="INFO">Waited for Element with selector css=header .right small at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.664061" elapsed="0.211401"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:22.927986" level="INFO">Text: 'Olá, Greg'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>Olá, ${splited_name}[0]</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.875462" elapsed="0.053524"/>
+</kw>
+<arg>${data}[user][name]</arg>
+<status status="PASS" start="2024-07-08T07:14:22.661063" elapsed="0.267923"/>
+</kw>
+<kw name="Go to task form" owner="Header">
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:22.931985" level="INFO">Clicks the element 'css=.button-add'.</msg>
+<arg>css=.button-add</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:22.931985" elapsed="0.135602"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:22.930985" elapsed="0.136602"/>
+</kw>
+<kw name="Submit task form" owner="TaskCreatePage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:23.200635" level="INFO">Fills the text 'Estudar em casa' in the given field.</msg>
+<arg>css=input[placeholder$=tarefa]</arg>
+<arg>${task}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.199636" elapsed="0.060046"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Fill Text" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="NOT RUN" start="2024-07-08T07:14:23.264204" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2024-07-08T07:14:23.265205" elapsed="0.000000"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="NOT RUN" start="2024-07-08T07:14:23.265205" elapsed="0.000000"/>
+</kw>
+<var name="${tag}"/>
+<status status="NOT RUN" start="2024-07-08T07:14:23.261682" elapsed="0.003523"/>
+</iter>
+<var>${tag}</var>
+<value>@{task}[tags]</value>
+<status status="NOT RUN" start="2024-07-08T07:14:23.260683" elapsed="0.005521"/>
+</for>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:23.267204" level="INFO">Clicks the element 'css=button &gt;&gt; text=Cadastrar'.</msg>
+<arg>css=button &gt;&gt; text=Cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.266204" elapsed="0.077075"/>
+</kw>
+<arg>${data}[task]</arg>
+<status status="PASS" start="2024-07-08T07:14:23.198636" elapsed="0.144643"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:23.413808" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.411807" elapsed="0.002001"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:23.439322" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.417321" elapsed="0.023001"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:23.471323" level="INFO">Text: 'Oops! Tarefa duplicada.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.440322" elapsed="0.031001"/>
+</kw>
+<arg>Oops! Tarefa duplicada.</arg>
+<status status="PASS" start="2024-07-08T07:14:23.410807" elapsed="0.060516"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:14:23.818728" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-9.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-9.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:14:23.472322" elapsed="0.346406"/>
+</kw>
+<tag>dup</tag>
+<status status="PASS" start="2024-07-08T07:14:19.885467" elapsed="3.988296"/>
+</test>
+<test id="s1-s4-s1-t3" name="Não pode cadastrar quando uma nova tarefa atinge o limite de Tags" line="54">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:24.895289" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:24.900290" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:24.900290" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:24.894289" elapsed="0.006001"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:27.397039" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:27.398039" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:24.900290" elapsed="2.497749"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:24.893289" elapsed="2.504750"/>
+</kw>
+<kw name="Get Fixture" owner="base">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2024-07-08T07:14:27.402554" level="INFO">${data} = {'create': {'user': {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma nova versão so ipod', 'tags': ['ios', 'music', 'ipod']}}...</msg>
+<var>${data}</var>
+<arg>${EXECDIR}/resources/Fixtures/${file_name}.Json</arg>
+<arg>encoding=utf-8</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.400550" elapsed="0.002004"/>
+</kw>
+<return>
+<value>${data}[${scenario}]</value>
+<status status="PASS" start="2024-07-08T07:14:27.407560" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-08T07:14:27.409561" level="INFO">${data} = {'user': {'name': 'Gregory Silva', 'email': 'gregory@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Estudar python', 'tags': ['QAX', 'python', 'Programação', 'pip']}}</msg>
+<var>${data}</var>
+<arg>tasks</arg>
+<arg>tags_limit</arg>
+<status status="PASS" start="2024-07-08T07:14:27.399038" elapsed="0.010523"/>
+</kw>
+<kw name="Reset user from database" owner="base">
+<kw name="Clean user from database" owner="database">
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:14:27.410559" elapsed="0.036517"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:14:27.497082" level="INFO">{'name': 'Gregory Silva', 'email': 'gregory@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:27.447076" elapsed="0.050006"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:27.410559" elapsed="0.086523"/>
+</kw>
+<kw name="Do login" owner="base">
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:27.500080" level="INFO">Fills the text 'gregory@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.499080" elapsed="0.128638"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:27.629890" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.628718" elapsed="0.044225"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:27.673944" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.672943" elapsed="0.107645"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:27.498081" elapsed="0.282507"/>
+</kw>
+<kw name="User should be logger in" owner="Header">
+<kw name="Split String" owner="String">
+<msg time="2024-07-08T07:14:27.782586" level="INFO">@{splited_name} = [ Gregory | Silva ]</msg>
+<var>@{splited_name}</var>
+<arg>${name}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.781586" elapsed="0.001000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-08T07:14:27.782586" level="INFO">['Gregory', 'Silva']</msg>
+<arg>${splited_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.782586" elapsed="0.001001"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:27.783587" level="INFO">${element} = css=header .right small</msg>
+<var>${element}</var>
+<arg>css=header .right small</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.783587" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:27.964673" level="INFO">Waited for Element with selector css=header .right small at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.783587" elapsed="0.182086"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:28.014679" level="INFO">Text: 'Olá, Gregory'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>Olá, ${splited_name}[0]</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:27.965673" elapsed="0.049006"/>
+</kw>
+<arg>${user}[name]</arg>
+<status status="PASS" start="2024-07-08T07:14:27.781586" elapsed="0.233093"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:27.498081" elapsed="0.516598"/>
+</kw>
+<kw name="Go to task form" owner="Header">
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:28.016679" level="INFO">Clicks the element 'css=.button-add'.</msg>
+<arg>css=.button-add</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:28.016679" elapsed="0.124739"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:28.015678" elapsed="0.125740"/>
+</kw>
+<kw name="Submit task form" owner="TaskCreatePage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:28.227941" level="INFO">Fills the text 'Estudar python' in the given field.</msg>
+<arg>css=input[placeholder$=tarefa]</arg>
+<arg>${task}[name]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:28.226941" elapsed="0.045046"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:28.276988" level="INFO">Fills the text 'QAX' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:28.275987" elapsed="0.048525"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:29.326042" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:28.325511" elapsed="1.000531"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:29.326551" elapsed="0.050741"/>
+</kw>
+<var name="${tag}">QAX</var>
+<status status="PASS" start="2024-07-08T07:14:28.274986" elapsed="1.103306"/>
+</iter>
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:29.379292" level="INFO">Fills the text 'python' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:29.378292" elapsed="0.035536"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:30.415205" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:29.414828" elapsed="1.000377"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:30.415205" elapsed="0.031241"/>
+</kw>
+<var name="${tag}">python</var>
+<status status="PASS" start="2024-07-08T07:14:29.378292" elapsed="1.068154"/>
+</iter>
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:30.447447" level="INFO">Fills the text 'Programação' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:30.446446" elapsed="0.025999"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:31.473575" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:30.473446" elapsed="1.000129"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:31.473575" elapsed="0.025007"/>
+</kw>
+<var name="${tag}">Programação</var>
+<status status="PASS" start="2024-07-08T07:14:30.446446" elapsed="1.053136"/>
+</iter>
+<iter>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:31.500581" level="INFO">Fills the text 'pip' in the given field.</msg>
+<arg>css=input[name=tags]</arg>
+<arg>${tag}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:31.499582" elapsed="0.022055"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-07-08T07:14:32.522807" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-07-08T07:14:31.522645" elapsed="1.000162"/>
+</kw>
+<kw name="Press Keys" owner="Browser">
+<arg>css=input[name=tags]</arg>
+<arg>Enter</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Types the given key combination into element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.522807" elapsed="0.024540"/>
+</kw>
+<var name="${tag}">pip</var>
+<status status="PASS" start="2024-07-08T07:14:31.499582" elapsed="1.047765"/>
+</iter>
+<var>${tag}</var>
+<value>@{task}[tags]</value>
+<status status="PASS" start="2024-07-08T07:14:28.274986" elapsed="4.272361"/>
+</for>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:32.548346" level="INFO">Clicks the element 'css=button &gt;&gt; text=Cadastrar'.</msg>
+<arg>css=button &gt;&gt; text=Cadastrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.547347" elapsed="0.060144"/>
+</kw>
+<arg>${data}[task]</arg>
+<status status="PASS" start="2024-07-08T07:14:28.225942" elapsed="4.381549"/>
+</kw>
+<kw name="Notice should be" owner="Notice">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:32.609498" level="INFO">${element} = css=.notice p</msg>
+<var>${element}</var>
+<arg>css=.notice p</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.609498" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:32.624019" level="INFO">Waited for Element with selector css=.notice p at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.609498" elapsed="0.015521"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:32.668019" level="INFO">Text: 'Oops! Limite de tags atingido.'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>${expected_text}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.625019" elapsed="0.043000"/>
+</kw>
+<arg>Oops! Limite de tags atingido.</arg>
+<status status="PASS" start="2024-07-08T07:14:32.608499" elapsed="0.059520"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:14:33.044911" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-10.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-10.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:14:32.669018" elapsed="0.375893"/>
+</kw>
+<tag>tags_limit</tag>
+<status status="PASS" start="2024-07-08T07:14:24.813737" elapsed="8.232173"/>
+</test>
+<doc>Cenários de cadastro de tarefas</doc>
+<status status="PASS" start="2024-07-08T07:14:11.346795" elapsed="22.701825"/>
+</suite>
+<suite id="s1-s4-s2" name="Delete" source="C:\QAx\projects\mark85-robot-express\tests\tasks\delete.robot">
+<test id="s1-s4-s2-t1" name="Deve poder Apagar uma tarefa como indesejada" line="13">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2024-07-08T07:14:34.429566" level="INFO">Switching browser to browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:34.436567" level="INFO">Successfully changed active browser: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<msg time="2024-07-08T07:14:34.436567" level="INFO">Reusing existing browser with id: browser=fefcbe2e-42ea-4bbb-bb8e-3d6510260ad6</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2024-07-08T07:14:34.428566" elapsed="0.008001"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2024-07-08T07:14:36.360510" level="INFO">Successfully initialized new page object and opened url: http://localhost:3000</msg>
+<msg time="2024-07-08T07:14:36.360510" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2024-07-08T07:14:34.437567" elapsed="1.923943"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:34.427566" elapsed="1.933944"/>
+</kw>
+<kw name="Get Fixture" owner="base">
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2024-07-08T07:14:36.610157" level="INFO">${data} = {'create': {'user': {'name': 'Gregory W Silva', 'email': 'gregorywillian@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma nova versão so ipod', 'tags': ['ios', 'music', 'ipod']}}...</msg>
+<var>${data}</var>
+<arg>${EXECDIR}/resources/Fixtures/${file_name}.Json</arg>
+<arg>encoding=utf-8</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.608157" elapsed="0.002000"/>
+</kw>
+<return>
+<value>${data}[${scenario}]</value>
+<status status="PASS" start="2024-07-08T07:14:36.610157" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-08T07:14:36.611157" level="INFO">${data} = {'user': {'name': 'Silva', 'email': 'Silva@yahoo.com.br', 'password': 'Gwsilva2014'}, 'task': {'name': 'Criar uma', 'tags': ['Javis', 'ulton', 'Ark']}}</msg>
+<var>${data}</var>
+<arg>tasks</arg>
+<arg>delete</arg>
+<status status="PASS" start="2024-07-08T07:14:36.602158" elapsed="0.008999"/>
+</kw>
+<kw name="Reset user from database" owner="base">
+<kw name="Clean user from database" owner="database">
+<arg>${user}[email]</arg>
+<status status="PASS" start="2024-07-08T07:14:36.617161" elapsed="0.030520"/>
+</kw>
+<kw name="Insert user from database" owner="database">
+<msg time="2024-07-08T07:14:36.694198" level="INFO">{'name': 'Silva', 'email': 'Silva@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:36.648684" elapsed="0.045514"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:36.616162" elapsed="0.078036"/>
+</kw>
+<kw name="Create a new task API" owner="base">
+<kw name="POST user Session" owner="services">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:14:36.697198" level="INFO">${payload} = {'email': 'Silva@yahoo.com.br', 'password': 'Gwsilva2014'}</msg>
+<var>${payload}</var>
+<arg>email=${user}[email]</arg>
+<arg>password=${user}[password]</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.696197" elapsed="0.001001"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-08T07:14:36.819665" level="INFO">POST Request : url=http://localhost:3333/sessions 
+ path_url=/sessions 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '58', 'Content-Type': 'application/json'} 
+ body=b'{"email": "Silva@yahoo.com.br", "password": "Gwsilva2014"}' 
+ </msg>
+<msg time="2024-07-08T07:14:36.819665" level="INFO">POST Response : url=http://localhost:3333/sessions 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '575', 'ETag': 'W/"23f-kgdomgNrMdx5iRimagtAyf92AFM"', 'Date': 'Mon, 08 Jul 2024 10:14:36 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"user":{"_id":"668bbc0cbce19ab2f4661bf2","name":"Silva","email":"Silva@yahoo.com.br","password":"$2b$08$oxe0YwOXlNUxjOcogZsfDOdvo8empW9Aq7/lfsuBs5VUtc7TI03t2"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYzBjYmNlMTlhYjJmNDY2MWJmMiIsInVzZXIiOnsiX2lkIjoiNjY4YmJjMGNiY2UxOWFiMmY0NjYxYmYyIiwibmFtZSI6IlNpbHZhIiwiZW1haWwiOiJTaWx2YUB5YWhvby5jb20uYnIiLCJwYXNzd29yZCI6IiQyYiQwOCRveGUwWXdPWGxOVXhqT2NvZ1pzZkRPZHZvOGVtcFc5QXE3L2xmc3VCczVWVXRjN1RJMDN0MiJ9LCJpYXQiOjE3MjA0MzM2NzYsImV4cCI6MTcyMTI5NzY3Nn0.vS30cZ-w60Ap10egDCjJt9OYDZvVTJUIUwk3tI7b1C8","expires_in":"10d"} 
+ </msg>
+<msg time="2024-07-08T07:14:36.820665" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>url=http://localhost:3333/sessions</arg>
+<arg>json=${payload}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.697198" elapsed="0.123467"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:36.821665" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYzBjYmNlMTlhYjJmNDY2MWJmMiIsInVzZXIiOnsiX2lkIjoiNjY4YmJjMGNiY2UxOWFiMmY0NjYxYmYyIiwibmFtZSI6IlNpbHZhIiwiZW1haWwiOiJTaWx2YUB5YWhvby5jb20uYnIiLCJwYXN...</msg>
+<var>${token}</var>
+<arg>${resp.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.820665" elapsed="0.001000"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:36.822665" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYzBjYmNlMTlhYjJmNDY2MWJmMiIsInVzZXIiOnsiX2lkIjoiNjY4YmJjMGNiY2UxOWFiMmY0NjYxYmYyIiwibmFtZSI6IlNpbHZhIiwiZW1haWwiOiJTaWx2YUB5YWhvby5jb20uYnIiLCJwYXN...</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.822665" elapsed="0.000000"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:36.696197" elapsed="0.126468"/>
+</kw>
+<kw name="POST a new task" owner="services">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-08T07:14:36.824665" level="INFO">${headers} = {'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYzBjYmNlMTlhYjJmNDY2MWJmMiIsInVzZXIiOnsiX2lkIjoiNjY4YmJjMGNiY2UxOWFiMmY0NjYxYmYyIiwibmFtZSI6IlNpbHZhIiwiZW1haWwiOiJTaWx2YUB5YWhv...</msg>
+<var>${headers}</var>
+<arg>Authorization=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.823665" elapsed="0.001000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-08T07:14:36.860184" level="INFO">POST Request : url=http://localhost:3333/tasks 
+ path_url=/tasks 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGJiYzBjYmNlMTlhYjJmNDY2MWJmMiIsInVzZXIiOnsiX2lkIjoiNjY4YmJjMGNiY2UxOWFiMmY0NjYxYmYyIiwibmFtZSI6IlNpbHZhIiwiZW1haWwiOiJTaWx2YUB5YWhvby5jb20uYnIiLCJwYXNzd29yZCI6IiQyYiQwOCRveGUwWXdPWGxOVXhqT2NvZ1pzZkRPZHZvOGVtcFc5QXE3L2xmc3VCczVWVXRjN1RJMDN0MiJ9LCJpYXQiOjE3MjA0MzM2NzYsImV4cCI6MTcyMTI5NzY3Nn0.vS30cZ-w60Ap10egDCjJt9OYDZvVTJUIUwk3tI7b1C8', 'Content-Length': '56', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Criar uma", "tags": ["Javis", "ulton", "Ark"]}' 
+ </msg>
+<msg time="2024-07-08T07:14:36.860184" level="INFO">POST Response : url=http://localhost:3333/tasks 
+ status=201, reason=Created 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '134', 'ETag': 'W/"86-3qZoBxJpM4+Tm6EpQHu9yXYddvU"', 'Date': 'Mon, 08 Jul 2024 10:14:36 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"name":"Criar uma","is_done":false,"tags":["Javis","ulton","Ark"],"user":"668bbc0cbce19ab2f4661bf2","_id":"668bbc0c74d50c0ab26cbe86"} 
+ </msg>
+<arg>url=http://localhost:3333/tasks</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=201</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-08T07:14:36.824665" elapsed="0.035519"/>
+</kw>
+<arg>${data}[task]</arg>
+<status status="PASS" start="2024-07-08T07:14:36.823665" elapsed="0.037520"/>
+</kw>
+<arg>${data}</arg>
+<status status="PASS" start="2024-07-08T07:14:36.695198" elapsed="0.165987"/>
+</kw>
+<kw name="Do login" owner="base">
+<kw name="Submit login form" owner="LoginPage">
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:37.010738" level="INFO">Fills the text 'Silva@yahoo.com.br' in the given field.</msg>
+<arg>css=input[placeholder$=mail]</arg>
+<arg>${user}[email]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.009738" elapsed="0.100242"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2024-07-08T07:14:37.111983" level="INFO">Fills the text 'Gwsilva2014' in the given field.</msg>
+<arg>css=input[placeholder=Senha]</arg>
+<arg>${user}[password]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.109980" elapsed="0.142569"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:37.256550" level="INFO">Clicks the element 'css=button &gt;&gt; text=Entrar'.</msg>
+<arg>css=button &gt;&gt; text=Entrar</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.253551" elapsed="0.100113"/>
+</kw>
+<arg>${user}</arg>
+<status status="PASS" start="2024-07-08T07:14:37.008737" elapsed="0.344927"/>
+</kw>
+<kw name="User should be logger in" owner="Header">
+<kw name="Split String" owner="String">
+<msg time="2024-07-08T07:14:37.358663" level="INFO">@{splited_name} = [ Silva ]</msg>
+<var>@{splited_name}</var>
+<arg>${name}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.357664" elapsed="0.000999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-08T07:14:37.359663" level="INFO">['Silva']</msg>
+<arg>${splited_name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.359663" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:37.360663" level="INFO">${element} = css=header .right small</msg>
+<var>${element}</var>
+<arg>css=header .right small</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.359663" elapsed="0.001000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:37.536763" level="INFO">Waited for Element with selector css=header .right small at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.360663" elapsed="0.177101"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2024-07-08T07:14:37.592305" level="INFO">Text: 'Olá, Silva'</msg>
+<arg>${element}</arg>
+<arg>equal</arg>
+<arg>Olá, ${splited_name}[0]</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.537764" elapsed="0.055541"/>
+</kw>
+<arg>${user}[name]</arg>
+<status status="PASS" start="2024-07-08T07:14:37.354664" elapsed="0.238641"/>
+</kw>
+<arg>${data}[user]</arg>
+<status status="PASS" start="2024-07-08T07:14:37.008737" elapsed="0.584568"/>
+</kw>
+<kw name="Request removal" owner="TasksPage">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-08T07:14:37.618828" level="INFO">${element} = xpath=//strong[text()="Criar uma"]/..//button[@class="task-remove"]</msg>
+<var>${element}</var>
+<arg>xpath=//strong[text()="Criar uma"]/..//button[@class="task-remove"]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.618828" elapsed="0.000000"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:37.632346" level="INFO">Waited for Element with selector xpath=//strong[text()="Criar uma"]/..//button[@class="task-remove"] at state visible</msg>
+<arg>${element}</arg>
+<arg>visible</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.619828" elapsed="0.012518"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2024-07-08T07:14:37.634345" level="INFO">Clicks the element 'xpath=//strong[text()="Criar uma"]/..//button[@class="task-remove"]'.</msg>
+<arg>${element}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.633345" elapsed="0.066053"/>
+</kw>
+<arg>${data}[task][name]</arg>
+<status status="PASS" start="2024-07-08T07:14:37.617827" elapsed="0.081571"/>
+</kw>
+<kw name="Task should not exixt" owner="TasksPage">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2024-07-08T07:14:37.838443" level="INFO">Waited for Element with selector css=.task-todo &gt;&gt; text=Criar uma at state detached</msg>
+<arg>css=.task-todo &gt;&gt; text=${task_name}</arg>
+<arg>detached</arg>
+<arg>5</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.712403" elapsed="0.127040"/>
+</kw>
+<arg>${data}[task][name]</arg>
+<status status="PASS" start="2024-07-08T07:14:37.711397" elapsed="0.128046"/>
+</kw>
+<kw name="Take Screenshot" owner="Browser" type="TEARDOWN">
+<msg time="2024-07-08T07:14:38.189636" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/robotframework-browser-screenshot-11.png" target="_blank"&gt;&lt;img src="browser/screenshot/robotframework-browser-screenshot-11.png" width="800px"/&gt;&lt;/a&gt;</msg>
+<tag>PageContent</tag>
+<doc>Takes a screenshot of the current window or element and saves it to disk.</doc>
+<status status="PASS" start="2024-07-08T07:14:37.840442" elapsed="0.350195"/>
+</kw>
+<status status="PASS" start="2024-07-08T07:14:34.320481" elapsed="3.873154"/>
+</test>
+<doc>Cenários dde testes de remoção de tarefas</doc>
+<status status="PASS" start="2024-07-08T07:14:34.228975" elapsed="4.422824"/>
+</suite>
+<status status="PASS" start="2024-07-08T07:14:11.331795" elapsed="27.618246"/>
+</suite>
+<status status="PASS" start="2024-07-08T07:13:14.120463" elapsed="85.105972"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="12" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="2" fail="0" skip="0">dup</stat>
+<stat pass="1" fail="0" skip="0">inv_email</stat>
+<stat pass="1" fail="0" skip="0">required</stat>
+<stat pass="1" fail="0" skip="0">tags_limit</stat>
 <stat pass="1" fail="0" skip="0">temp</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Signup">Tests.Signup</stat>
+<stat pass="12" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Login">Tests.Login</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="Online">Tests.Online</stat>
+<stat pass="5" fail="0" skip="0" id="s1-s3" name="Signup">Tests.Signup</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s4" name="Tasks">Tests.Tasks</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s4-s1" name="Create">Tests.Tasks.Create</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s4-s2" name="Delete">Tests.Tasks.Delete</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2024-07-08T07:13:16.165341" level="WARN">Error in file 'C:\QAx\projects\mark85-robot-express\resources\base.resource' on line 33: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
 </errors>
 </robot>
